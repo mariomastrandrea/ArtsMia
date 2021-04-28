@@ -1,7 +1,7 @@
 package it.polito.tdp.artsmia.model;
 
-public class ArtObject {
-
+public class ArtObject 
+{
 	private int id;
 	private String classification;
 	private String continent;

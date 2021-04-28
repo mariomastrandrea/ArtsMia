@@ -15,8 +15,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class FXMLController {
-	
+public class FXMLController 
+{	
 	private Model model;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -46,32 +46,36 @@ public class FXMLController {
     
     
     @FXML
-    void doAnalizzaOggetti(ActionEvent event) {
+    void doAnalizzaOggetti(ActionEvent event) 
+    {
+    	this.model.creaGrafo();
+    }
+
+    @FXML
+    void doCalcolaComponenteConnessa(ActionEvent event) 
+    {
 
     }
 
     @FXML
-    void doCalcolaComponenteConnessa(ActionEvent event) {
-
-    }
-
-    @FXML
-    void doCercaOggetti(ActionEvent event) {
+    void doCercaOggetti(ActionEvent event) 
+    {
 
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    void initialize() 
+    {
         assert boxLUN != null : "fx:id=\"boxLUN\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnCalcolaComponenteConnessa != null : "fx:id=\"btnCalcolaComponenteConnessa\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnCercaOggetti != null : "fx:id=\"btnCercaOggetti\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnAnalizzaOggetti != null : "fx:id=\"btnAnalizzaOggetti\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtObjectId != null : "fx:id=\"txtObjectId\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
-
     }
     
-    public void setModel(Model model) {
+    public void setModel(Model model) 
+    {
     	this.model = model;
     }
 }

@@ -5,29 +5,32 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 
-public class DBConnect {
-
-	private static String jdbcURL = "jdbc:mysql://localhost/artsmia";
-
+public class DBConnect 
+{
+	private static String jdbcURL = "jdbc:mariadb://localhost/artsmia";
 	private static HikariDataSource ds = null;
 
-	public static Connection getConnection() {
+	public static Connection getConnection() 
+	{
 
-		if (ds == null) {
+		if (ds == null) 
+		{
 			HikariConfig config = new HikariConfig();
 			config.setJdbcUrl(jdbcURL);
 			config.setUsername("root");
-			config.setPassword("");
+			config.setPassword("root");
 			
-			//configurazione mysql
 			config.addDataSourceProperty("cachePrepStmts", "true");
 			config.addDataSourceProperty("preprStmtChacheSize", "250");
 			config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 			ds = new HikariDataSource(config);
 		}
-		try {
+		try 
+		{
 			return ds.getConnection();
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			System.err.println("Errore connessione al DB");
 			throw new RuntimeException(e);
 		}

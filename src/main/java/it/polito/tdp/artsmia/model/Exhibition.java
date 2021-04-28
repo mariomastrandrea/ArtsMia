@@ -1,14 +1,15 @@
 package it.polito.tdp.artsmia.model;
 
-public class Exhibition {
-
+public class Exhibition 
+{
 	int id;
 	String department;
 	String title;
 	int beginYear;
 	int endYear;
 
-	public Exhibition(int id, String department, String title, int beginYear, int endYear) {
+	public Exhibition(int id, String department, String title, int beginYear, int endYear) 
+	{
 		super();
 		this.id = id;
 		this.department = department;
