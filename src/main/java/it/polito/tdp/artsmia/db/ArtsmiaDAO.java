@@ -14,34 +14,35 @@ import it.polito.tdp.artsmia.model.ArtObject;
 public class ArtsmiaDAO 
 {
 	public void listObjects(Map<Integer, ArtObject> idMap) 
-	{
-		
+	{	
 		String sql = "SELECT * from objects";
-		Connection conn = DBConnect.getConnection();
 
 		try 
 		{
-			PreparedStatement st = conn.prepareStatement(sql);
-			ResultSet res = st.executeQuery();
-			while (res.next()) 
+			Connection connection = DBConnect.getConnection();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			ResultSet queryResult = statement.executeQuery();
+			
+			while (queryResult.next()) 
 			{
 				ArtObject artObj;
-				if(!idMap.containsKey(res.getInt("object_id")))
+				int id = queryResult.getInt("object_id");
+				if(!idMap.containsKey(id))
 				{
-					artObj = new ArtObject(res.getInt("object_id"), res.getString("classification"), res.getString("continent"), 
-							res.getString("country"), res.getInt("curator_approved"), res.getString("dated"), res.getString("department"), 
-							res.getString("medium"), res.getString("nationality"), res.getString("object_name"), res.getInt("restricted"), 
-							res.getString("rights_type"), res.getString("role"), res.getString("room"), res.getString("style"), res.getString("title"));
+					artObj = new ArtObject(id, queryResult.getString("classification"), queryResult.getString("continent"), 
+							queryResult.getString("country"), queryResult.getInt("curator_approved"), queryResult.getString("dated"), queryResult.getString("department"), 
+							queryResult.getString("medium"), queryResult.getString("nationality"), queryResult.getString("object_name"), queryResult.getInt("restricted"), 
+							queryResult.getString("rights_type"), queryResult.getString("role"), queryResult.getString("room"), queryResult.getString("style"), queryResult.getString("title"));
 					
 					idMap.put(artObj.getId(), artObj);
 				}	
 			}
-			conn.close();
+			connection.close();
 		} 
-		catch (SQLException e) 
+		catch (SQLException sqle) 
 		{
-			e.printStackTrace();
-			throw new RuntimeException("SQL error in listObjects()", e);
+			sqle.printStackTrace();
+			throw new RuntimeException("Dao error in listObjects()", sqle);
 		}
 	}
 	
@@ -51,8 +52,7 @@ public class ArtsmiaDAO
 							"SELECT COUNT(*) AS peso",
 							"FROM exhibition_objects e1, exhibition_objects e2",
 							"WHERE e1.exhibition_id = e2.exhibition_id",
-							"AND e1.object_id = ? AND e2.object_id = ?");
-		
+								   	"AND e1.object_id = ? AND e2.object_id = ?");
 		int peso = 0;
 
 		try
@@ -66,14 +66,12 @@ public class ArtsmiaDAO
 			if(result.next())
 				peso = result.getInt("peso");
 			
-			result.close();
-			statement.close();
-			connection.close();
+			DBConnect.close(result, statement, connection);
 		}
-		catch(SQLException e)
+		catch(SQLException sqle)
 		{
-			e.printStackTrace();
-			peso = 0;
+			sqle.printStackTrace();
+			throw new RuntimeException("Dao error in getPesoArcoTra()", sqle);
 		}
 		return peso;
 	}
@@ -92,26 +90,24 @@ public class ArtsmiaDAO
 		{
 			Connection connection = DBConnect.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sqlQuery);
-			ResultSet result = statement.executeQuery();
+			ResultSet queryResult = statement.executeQuery();
 			
-			while(result.next())
+			while(queryResult.next())
 			{
-				adiacenze.add(new Adiacenza(result.getInt("id1"), result.getInt("id2"), result.getInt("peso")));
+				Adiacenza newAdiacenza = new Adiacenza(queryResult.getInt("id1"), 
+														queryResult.getInt("id2"), 
+														queryResult.getInt("peso"));
+				adiacenze.add(newAdiacenza);
 			}
 						
-			result.close();
-			statement.close();
-			connection.close();
+			DBConnect.close(queryResult, statement, connection);
 		}
-		catch(SQLException e)
+		catch(SQLException sqle)
 		{
-			e.printStackTrace();
-			return null;
+			sqle.printStackTrace();
+			throw new RuntimeException("Dao error in getAdiacenze()", sqle);
 		}
 		
 		return adiacenze;
-	}
-	
-	
-	
+	}	
 }

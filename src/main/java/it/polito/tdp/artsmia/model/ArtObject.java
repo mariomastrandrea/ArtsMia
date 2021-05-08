@@ -19,11 +19,12 @@ public class ArtObject
 	private String style;
 	private String title;
 
+	
 	public ArtObject(int objectId, String classification, String continent, 
 			String country, int curatorApproved, String dated, String department, 
 			String medium, String nationality, String objectName, int restricted, 
-			String rightsType, String role, String room, String style, String title) {
-		super();
+			String rightsType, String role, String room, String style, String title) 
+	{
 		this.id = objectId;
 		this.classification = classification;
 		this.continent = continent;
@@ -42,136 +43,90 @@ public class ArtObject
 		this.title = title;
 	}
 
-	public int getId() {
-		return id;
+	public int getId() 
+	{
+		return this.id;
 	}
 
-	public void setId(int objectId) {
-		this.id = objectId;
+	public String getClassification() 
+	{
+		return this.classification;
 	}
 
-	public String getClassification() {
-		return classification;
+	public String getContinent() 
+	{
+		return this.continent;
 	}
 
-	public void setClassification(String classification) {
-		this.classification = classification;
+	public String getCountry() 
+	{
+		return this.country;
 	}
 
-	public String getContinent() {
-		return continent;
+	public int getCuratorApproved() 
+	{
+		return this.curatorApproved;
 	}
 
-	public void setContinent(String continent) {
-		this.continent = continent;
+
+	public String getDated() 
+	{
+		return this.dated;
 	}
 
-	public String getCountry() {
-		return country;
+	public String getDepartment() 
+	{
+		return this.department;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public String getMedium() 
+	{
+		return this.medium;
+	}
+	
+	public String getNationality() 
+	{
+		return this.nationality;
 	}
 
-	public int getCuratorApproved() {
-		return curatorApproved;
+	public String getName() 
+	{
+		return this.name;
 	}
 
-	public void setCuratorApproved(int curatorApproved) {
-		this.curatorApproved = curatorApproved;
+	public int getRestricted() 
+	{
+		return this.restricted;
 	}
 
-	public String getDated() {
-		return dated;
+	public String getRightsType() 
+	{
+		return this.rightsType;
 	}
 
-	public void setDated(String dated) {
-		this.dated = dated;
+	public String getRole() 
+	{
+		return this.role;
 	}
 
-	public String getDepartment() {
-		return department;
+	public String getRoom() 
+	{
+		return this.room;
 	}
 
-	public void setDepartment(String department) {
-		this.department = department;
+	public String getStyle() 
+	{
+		return this.style;
 	}
 
-	public String getMedium() {
-		return medium;
-	}
-
-	public void setMedium(String medium) {
-		this.medium = medium;
-	}
-
-	public String getNationality() {
-		return nationality;
-	}
-
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String objectName) {
-		this.name = objectName;
-	}
-
-	public int getRestricted() {
-		return restricted;
-	}
-
-	public void setRestricted(int restricted) {
-		this.restricted = restricted;
-	}
-
-	public String getRightsType() {
-		return rightsType;
-	}
-
-	public void setRightsType(String rightsType) {
-		this.rightsType = rightsType;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public String getRoom() {
-		return room;
-	}
-
-	public void setRoom(String room) {
-		this.room = room;
-	}
-
-	public String getStyle() {
-		return style;
-	}
-
-	public void setStyle(String style) {
-		this.style = style;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public String getTitle() 
+	{
+		return this.title;
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode() 
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
@@ -179,7 +134,8 @@ public class ArtObject
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) 
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -193,7 +149,8 @@ public class ArtObject
 	}
 	
 	@Override
-	public String toString() {
-		return "ArtObject [objectId=" + id + ", title=" + title + "]";
+	public String toString() 
+	{
+		return String.format("objectId: %d, title: %s", this.id, this.title);
 	}
 }

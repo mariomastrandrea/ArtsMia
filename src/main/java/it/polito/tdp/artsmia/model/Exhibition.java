@@ -2,15 +2,15 @@ package it.polito.tdp.artsmia.model;
 
 public class Exhibition 
 {
-	int id;
-	String department;
-	String title;
-	int beginYear;
-	int endYear;
+	private int id;
+	private String department;
+	private String title;
+	private int beginYear;
+	private int endYear;
 
+	
 	public Exhibition(int id, String department, String title, int beginYear, int endYear) 
 	{
-		super();
 		this.id = id;
 		this.department = department;
 		this.title = title;
@@ -18,48 +18,34 @@ public class Exhibition
 		this.endYear = endYear;
 	}
 
-	public int getId() {
-		return id;
+	public int getId() 
+	{
+		return this.id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public String getDepartment() 
+	{
+		return this.department;
 	}
 
-	public String getDepartment() {
-		return department;
+	public String getTitle() 
+	{
+		return this.title;
 	}
 
-	public void setDepartment(String department) {
-		this.department = department;
+	public int getBeginYear() 
+	{
+		return this.beginYear;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public int getBeginYear() {
-		return beginYear;
-	}
-
-	public void setBeginYear(int beginYear) {
-		this.beginYear = beginYear;
-	}
-
-	public int getEndYear() {
-		return endYear;
-	}
-
-	public void setEndYear(int endYear) {
-		this.endYear = endYear;
+	public int getEndYear() 
+	{
+		return this.endYear;
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode() 
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
@@ -67,7 +53,8 @@ public class Exhibition
 	}
 
 	@Override
-	public boolean equals(java.lang.Object obj) {
+	public boolean equals(Object obj) 
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -81,7 +68,8 @@ public class Exhibition
 	}
 	
 	@Override
-	public String toString() {
-		return "Exhibition [id=" + id + ", title=" + title + "]";
+	public String toString() 
+	{
+		return String.format("exhibitionId: %d, title: %s", this.id, this.title);
 	}
 }

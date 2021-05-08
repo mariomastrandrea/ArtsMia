@@ -16,18 +16,17 @@ public class Adiacenza
 
 	public Integer getId1()
 	{
-		return id1;
+		return this.id1;
 	}
 
 	public Integer getId2()
 	{
-		return id2;
+		return this.id2;
 	}
 
 
 	public int getPeso()
 	{
-		return peso;
-	}
-		
+		return this.peso;
+	}	
 }
